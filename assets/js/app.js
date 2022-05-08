@@ -5,7 +5,7 @@
 
   let frosts = 0;
   let counter = 0;
-  let arrFrostsLength = [];
+  let maxFrostsLength = 0;
 
   for(let i = 0; i < winterDays.length - 1; i++){
 
@@ -19,15 +19,14 @@
 
     if(winterDays[i] < 0){
       counter++;
-    }else if (winterDays[i] >= 0){
-      let frostsLength = counter;
-      arrFrostsLength.push(frostsLength);
+    }else if (winterDays[i] >= 0 && counter > maxFrostsLength){
+      maxFrostsLength = counter;
+      counter = 0;
+    }else if (winterDays[i] >= 0 && counter <= maxFrostsLength){
       counter = 0;
     }
 
   }
-
-  let maxFrostsLength = Math.max.apply(null, arrFrostsLength);
 
   console.log(`Количество заморозков: ${frosts}`);
   console.log(`Максимальный период заморозков: ${maxFrostsLength}`);
